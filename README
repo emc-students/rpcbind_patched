@@ -1,3 +1,37 @@
 This release was a native source release from Sun.
 It has been ported from FreeBSD 5.2.1 to GNU/Linux in 2004.
 
+
+Установить rpcbind с помощью следующих команд:
+
+./configure --prefix=/usr       \
+            --bindir=/sbin      \
+            --with-rpcuser=root \
+            --without-systemdsystemunitdir &&
+make
+
+После данных команд под суперюзером выполнить:
+
+make install
+
+Возможно для установки rpcbind потребуется установить библиотеку libtirpc.
+
+
+
+Пропатченная версия позволяет: 
+1. Запускать копии rpcbind в разных network namespace. Каждая копия полностью независима друг от друга(имеется своя копия файлов с которыми она работает).
+Примеры:
+
+	ip netns exec A rpcbind  
+	ip netns exec A rpcbind #ошибка: rpcbind в A уже есть!
+
+2. Добавлен ключ -m (от more logs) который ведет логи добавляя ID namespace(inode) в формате rpcbind.[inode]
+Примеры:
+	
+	ip netns exec B rpcbind # не приписывает inode и не выводит сообщение о том, где запущен.
+	ip netns exec C rpcbind -m 
+	rpcbind -m
+
+logfile:	
+rpcbind.4026532674[2704]: run in [C] namespace
+rpcbind.4026532698[2715]: run in [] namespace
