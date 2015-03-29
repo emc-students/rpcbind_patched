@@ -835,7 +835,7 @@ static void
 terminate(int dummy /*__unused*/)
 {
 	close(rpcbindlockfd);
-	unlink(_PATH_RPCBINDSOCK);
+    unlink(rpcbindsock);
 	unlink(RPCBINDDLOCK);
 #ifdef WARMSTART
 	write_warmstart();	/* Dump yourself */

@@ -169,7 +169,7 @@ configure:3841: checking pkg-config is at least version 0.9.0
 configure:3844: result: yes
 configure:4137: checking for library containing pthread_create
 configure:4168: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccQ0fNXQ.o: In function `main':
+/tmp/ccAlAtaP.o: In function `main':
 /home/acer/emc/rpcbind_mod/conftest.c:22: undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
 configure:4168: $? = 1
